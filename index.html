@@ -4,116 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Jugadores - LOZANOBOT 🤖</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            margin: 30px 0;
-            font-size: 2.5em;
-            color: #00ff88;
-            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-        }
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .category-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        h2 {
-            color: #00ff88;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .player-list {
-            list-style: none;
-        }
-
-        .player-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            margin: 5px 0;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .player-item:hover {
-            transform: translateX(10px);
-        }
-
-        .player-name {
-            color: #fff;
-        }
-
-        .player-stat {
-            color: #00ff88;
-            font-weight: bold;
-        }
-
-        .discord-banner {
-            text-align: center;
-            margin: 40px 0;
-            padding: 20px;
-            background: rgba(0, 255, 136, 0.1);
-            border-radius: 15px;
-        }
-
-        .discord-link {
-            color: #00ff88;
-            text-decoration: none;
-            font-size: 1.2em;
-            display: inline-block;
-            padding: 10px 20px;
-            border: 2px solid #00ff88;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .discord-link:hover {
-            background: #00ff88;
-            color: #1a1a1a;
-        }
-
-        @media (max-width: 768px) {
-            .categories {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -121,7 +12,7 @@
         
         <div class="categories">
             <div class="category-card">
-                <h2>⚽ Goles</h2>
+                <h2>⚔️ Goles</h2>
                 <ul class="player-list" id="goals-list"></ul>
             </div>
             
@@ -158,58 +49,6 @@
         </div>
     </div>
 
-    <script>
-        // Obtener datos del localStorage
-        function getPlayerStats() {
-            const players = [];
-            for(let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                if(!['player_name', 'view_mode', 'geo', 'avatar', 'player_auth_key'].includes(key)) {
-                    const data = JSON.parse(localStorage.getItem(key));
-                    players.push({
-                        name: data[11], // Índice del nombre del jugador
-                        goals: data[5],
-                        games: data[0],
-                        assists: data[6],
-                        wins: data[1],
-                        cleanSheets: data[8],
-                        winRate: data[4]
-                    });
-                }
-            }
-            return players;
-        }
-
-        // Generar lista de jugadores
-        function generateList(players, stat, elementId) {
-            const sorted = players.sort((a, b) => b[stat] - a[stat]).slice(0, 10);
-            const list = document.getElementById(elementId);
-            
-            sorted.forEach((player, index) => {
-                const li = document.createElement('li');
-                li.className = 'player-item';
-                li.innerHTML = `
-                    <span class="player-name">${index + 1}. ${player.name}</span>
-                    <span class="player-stat">${player[stat]}${stat === 'winRate' ? '%' : ''}</span>
-                `;
-                list.appendChild(li);
-            });
-        }
-
-        // Cargar todos los tops
-        function loadAllStats() {
-            const players = getPlayerStats();
-            
-            generateList(players, 'goals', 'goals-list');
-            generateList(players, 'games', 'games-list');
-            generateList(players, 'assists', 'assists-list');
-            generateList(players, 'wins', 'wins-list');
-            generateList(players, 'cleanSheets', 'clean-sheets-list');
-            generateList(players, 'winRate', 'accuracy-list');
-        }
-
-        // Cargar cuando esté listo el DOM
-        document.addEventListener('DOMContentLoaded', loadAllStats);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
