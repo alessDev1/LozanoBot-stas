@@ -1,0 +1,6 @@
+{
+    "players": [
+      {"name": "NombreReal1", "goals": 45, "games": 100, "assists": 20, "wins": 75, "cleanSheets": 15, "winRate": 75},
+      {"name": "NombreReal2", "goals": 38, "games": 95, "assists": 25, "wins": 70, "cleanSheets": 12, "winRate": 73.68}
+    ]
+  }
